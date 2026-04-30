@@ -25,6 +25,38 @@
             line-height: 1.6;
             padding: 20px;
         }
+        /* Login overlay */
+        #login-overlay {
+            position: fixed; inset: 0; z-index: 9999;
+            background: var(--bg);
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column;
+        }
+        #login-overlay.hidden { display: none; }
+        #login-box {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 40px; width: 360px; text-align: center;
+        }
+        #login-box h2 { margin-bottom: 8px; font-size: 1.3em; }
+        #login-box p { color: var(--muted); font-size: 0.85em; margin-bottom: 24px; }
+        #login-box input {
+            width: 100%; padding: 12px 14px; border-radius: 8px;
+            border: 1px solid var(--border); background: var(--bg); color: var(--text);
+            font-size: 0.95em; margin-bottom: 12px; outline: none;
+        }
+        #login-box input:focus { border-color: var(--accent); }
+        #login-box button {
+            width: 100%; padding: 12px; border: none; border-radius: 8px;
+            background: var(--accent); color: #fff; font-size: 1em; font-weight: 600;
+            cursor: pointer; transition: opacity 0.2s;
+        }
+        #login-box button:hover { opacity: 0.85; }
+        #login-error {
+            color: var(--red); font-size: 0.85em; margin-top: 10px; display: none;
+        }
+        /* Board content hidden until authenticated */
+        #board-content { display: none; }
+        #board-content.visible { display: block; }
         .container { max-width: 900px; margin: 0 auto; }
         header {
             text-align: center;
@@ -111,6 +143,21 @@
     </style>
 </head>
 <body>
+
+<!-- Login Gate -->
+<div id="login-overlay">
+    <div id="login-box">
+        <h2>🔐 Gunngar Board</h2>
+        <p>Enter credentials to access the project board</p>
+        <input type="email" id="login-email" placeholder="Email address" autocomplete="username">
+        <input type="password" id="login-pass" placeholder="Password" autocomplete="current-password">
+        <button id="login-btn" onclick="doLogin()">Sign In</button>
+        <div id="login-error">Invalid email or password</div>
+    </div>
+</div>
+
+<!-- Board Content (hidden until authenticated) -->
+<div id="board-content">
 <div class="container">
     <header>
         <h1>📋 <span>Gunngar</span> — Project Board</h1>
@@ -222,5 +269,33 @@
         <p>Built and maintained by KiloClaw • Auto-updated on each board meeting</p>
     </footer>
 </div>
+</div>
+
+<script>
+function doLogin() {
+    var email = document.getElementById('login-email').value.trim();
+    var pass = document.getElementById('login-pass').value;
+    var valid = email === 'garrettgunn@gmail.com' && pass === '2313QWE$$';
+    if (valid) {
+        document.getElementById('login-overlay').classList.add('hidden');
+        document.getElementById('board-content').classList.add('visible');
+        sessionStorage.setItem('board_auth', '1');
+    } else {
+        document.getElementById('login-error').style.display = 'block';
+    }
+}
+// Enter key support
+document.getElementById('login-pass').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doLogin();
+});
+document.getElementById('login-email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') document.getElementById('login-pass').focus();
+});
+// Restore session
+if (sessionStorage.getItem('board_auth') === '1') {
+    document.getElementById('login-overlay').classList.add('hidden');
+    document.getElementById('board-content').classList.add('visible');
+}
+</script>
 </body>
 </html>
