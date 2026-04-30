@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunngar — Project Board</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --card: #12121a;
+            --border: #1e1e2e;
+            --text: #e2e2e8;
+            --muted: #8888a0;
+            --accent: #6c63ff;
+            --red: #ff4757;
+            --green: #2ed573;
+            --yellow: #ffa502;
+            --blue: #1e90ff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        header h1 { font-size: 1.8em; font-weight: 700; }
+        header h1 span { color: var(--accent); }
+        header p { color: var(--muted); margin-top: 6px; font-size: 0.9em; }
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-high { background: rgba(255,71,87,0.15); color: var(--red); }
+        .badge-medium { background: rgba(255,165,2,0.15); color: var(--yellow); }
+        .badge-low { background: rgba(46,213,115,0.15); color: var(--green); }
+        section { margin-bottom: 30px; }
+        h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        h3 { font-size: 1em; color: var(--accent); margin: 15px 0 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88em;
+        }
+        th { color: var(--muted); font-weight: 500; font-size: 0.8em; text-transform: uppercase; }
+        tr:hover { background: rgba(108,99,255,0.04); }
+        .status { font-weight: 600; }
+        .todo { color: var(--red); }
+        .active { color: var(--green); }
+        .pending { color: var(--yellow); }
+        .recurring { color: var(--blue); }
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+        }
+        .project-card h3 { margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+        .project-card p { color: var(--muted); font-size: 0.85em; margin: 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; }
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .stat .number { font-size: 2em; font-weight: 700; color: var(--accent); }
+        .stat .label { color: var(--muted); font-size: 0.8em; margin-top: 4px; }
+        .done-item { color: var(--green); }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.8em;
+        }
+        .owner { font-weight: 500; }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            th, td { padding: 8px 6px; font-size: 0.8em; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>📋 <span>Gunngar</span> — Project Board</h1>
+        <p>Last updated: 30 April 2026, 1:11 PM (Dublin) • Managed by KiloClaw</p>
+    </header>
+
+    <!-- Stats -->
+    <div class="grid" style="margin-bottom: 30px;">
+        <div class="stat"><div class="number">5</div><div class="label">Projects</div></div>
+        <div class="stat"><div class="number">2</div><div class="label">Active Boards</div></div>
+        <div class="stat"><div class="number">4</div><div class="label">Paper Trades Open</div></div>
+        <div class="stat"><div class="number">€3K</div><div class="label">Portfolio</div></div>
+    </div>
+
+    <!-- URGENT -->
+    <section>
+        <h2>🚨 Urgent — This Week</h2>
+
+        <h3>ClubRaise (HIGH PRIORITY)</h3>
+        <table>
+            <tr><th>Task</th><th>Owner</th><th>Deadline</th><th>Status</th></tr>
+            <tr><td>Create X/Twitter @ClubRaise_ie</td><td class="owner">Gar</td><td>ASAP</td><td class="status todo">🔴 TODO</td></tr>
+            <tr><td>Decide pricing model</td><td class="owner">Gar</td><td>Today</td><td class="status todo">🔴 TODO</td></tr>
+            <tr><td>Submit Facebook App Review</td><td class="owner">Gar</td><td>This week</td><td class="status todo">🔴 TODO</td></tr>
+            <tr><td>Share 3-5 club contacts</td><td class="owner">Gar</td><td>This week</td><td class="status todo">🔴 TODO</td></tr>
+            <tr><td>Prepare LMS launch content</td><td class="owner">KiloClaw</td><td>May 7</td><td class="status todo">🔴 TODO</td></tr>
+        </table>
+
+        <h3>Trading (MONITORING)</h3>
+        <table>
+            <tr><th>Task</th><th>Owner</th><th>Deadline</th><th>Status</th></tr>
+            <tr><td>Monitor 4 paper trades</td><td class="owner">KiloClaw</td><td>Daily</td><td class="status active">🟢 ACTIVE</td></tr>
+            <tr><td>Discord bot invite to Overkill server</td><td class="owner">Gar</td><td>TBD</td><td class="status todo">🔴 TODO</td></tr>
+        </table>
+
+        <h3>GrantFlow (PLANNING)</h3>
+        <table>
+            <tr><th>Task</th><th>Owner</th><th>Deadline</th><th>Status</th></tr>
+            <tr><td>GitHub repo access</td><td class="owner">Gar</td><td>TBD</td><td class="status todo">🔴 TODO</td></tr>
+            <tr><td>Build AI Grant Advisor demo</td><td class="owner">KiloClaw</td><td>TBD</td><td class="status todo">🔴 TODO</td></tr>
+            <tr><td>Convene first board meeting</td><td class="owner">Both</td><td>TBD</td><td class="status todo">🔴 TODO</td></tr>
+        </table>
+    </section>
+
+    <!-- SCHEDULED MEETINGS -->
+    <section>
+        <h2>📅 Scheduled Meetings</h2>
+        <table>
+            <tr><th>Project</th><th>When</th><th>Type</th><th>Status</th></tr>
+            <tr><td><strong>Trading</strong></td><td>Sunday May 4, 6 PM</td><td>Board #3</td><td class="status recurring">🔄 SCHEDULED</td></tr>
+            <tr><td><strong>ClubRaise</strong></td><td>Tuesday May 6, 6 PM</td><td>Board #2</td><td class="status recurring">🔄 SCHEDULED</td></tr>
+            <tr><td><strong>GrantFlow</strong></td><td>TBD</td><td>Board #1</td><td class="status pending">⏸️ AWAITING</td></tr>
+        </table>
+    </section>
+
+    <!-- PROJECT HEALTH -->
+    <section>
+        <h2>📊 Project Health</h2>
+        <div class="project-card">
+            <h3>🔵 Trading <span class="badge badge-high">HIGH</span></h3>
+            <p>Board: ✅ Active | 4 paper trades open (CETUS, AXL, PEPE, DOGE) | 7 systems running (YouTube monitor, DCA, Grid, Quant Momentum, Risk Manager) | Next: Sunday board review</p>
+        </div>
+        <div class="project-card">
+            <h3>🟢 ClubRaise <span class="badge badge-high">HIGH</span></h3>
+            <p>Board: ✅ Active | Platform live at clubraise.ie | All-Ireland Last Man Standing 2026 approved for May 17 launch | 4 urgent user actions pending</p>
+        </div>
+        <div class="project-card">
+            <h3>🟡 GrantFlow <span class="badge badge-medium">MEDIUM</span></h3>
+            <p>Board: ❌ Never met | Live at grantflow.ie | €25/job pricing | Target: 1,500+ SEAI installers | Needs GitHub access + first board meeting</p>
+        </div>
+        <div class="project-card">
+            <h3>🟣 Business Advisor <span class="badge badge-low">LOW</span></h3>
+            <p>Board: ❌ Never met | Strategy explored (AI agency, Gumroad, dev services) | Awaiting direction on which path to pursue</p>
+        </div>
+        <div class="project-card">
+            <h3>⚪ Retrofit <span class="badge badge-low">LOW</span></h3>
+            <p>Board: ❌ No board | Planning phase | Site: retrofit.ie | Needs project setup + GitHub access</p>
+        </div>
+    </section>
+
+    <!-- COMPLETED -->
+    <section>
+        <h2>✅ Completed Today (Apr 30)</h2>
+        <table>
+            <tr><th>Task</th><th>Project</th></tr>
+            <tr><td class="done-item">Trading Board #2 — DOGE trade, grid bug fix</td><td>Trading</td></tr>
+            <tr><td class="done-item">ClubRaise Board #1 — LMS launch approved</td><td>ClubRaise</td></tr>
+            <tr><td class="done-item">Quant Momentum built (RSI filter)</td><td>Trading</td></tr>
+            <tr><td class="done-item">Grid Trading bug fixed</td><td>Trading</td></tr>
+            <tr><td class="done-item">DCA + Staking launched</td><td>Trading</td></tr>
+            <tr><td class="done-item">Watchlist expanded to 56 symbols</td><td>Trading</td></tr>
+            <tr><td class="done-item">4 paper trades opened</td><td>Trading</td></tr>
+            <tr><td class="done-item">Master task board created</td><td>All</td></tr>
+        </table>
+    </section>
+
+    <!-- LEGEND -->
+    <section>
+        <h2>📌 Legend</h2>
+        <table>
+            <tr><td class="status todo">🔴 TODO</td><td>Not started</td></tr>
+            <tr><td class="status active">🟢 ACTIVE</td><td>Running / completed</td></tr>
+            <tr><td class="status pending">⏸️ AWAITING</td><td>Waiting on dependency</td></tr>
+            <tr><td class="status recurring">🔄 RECURRING</td><td>Ongoing / repeating</td></tr>
+        </table>
+    </section>
+
+    <footer>
+        <p>Built and maintained by KiloClaw • Auto-updated on each board meeting</p>
+    </footer>
+</div>
+</body>
+</html>
